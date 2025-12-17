@@ -1,61 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>iausyh Society</title>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      background: #000000;
-      overflow: hidden;
-    }
-    canvas {
-      display: block;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Falling Code Site</title>
+
+<style>
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #000000;
+  overflow: hidden;
+  height: 100%;
+  font-family: monospace;
+}
+
+/* NAVBAR */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  z-index: 10;
+}
+
+.nav-left {
+  margin-left: 20px;
+}
+
+.nav-left img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+/* CENTER LINKS */
+.nav-center {
+  flex: 1;
+  text-align: center;
+}
+
+.nav-center a {
+  color: #b026ff;
+  text-decoration: none;
+  margin: 0 20px;
+  font-size: 16px;
+}
+
+.nav-center a:hover {
+  text-decoration: underline;
+}
+
+/* CANVAS */
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+</style>
 </head>
+
 <body>
-  <canvas id="canvas"></canvas>
 
-  <script>
-    const canvas = document.getElementById("canvas");
-    const ctx = canvas.getContext("2d");
+<!-- TOP BAR -->
+<div class="navbar">
+  <div class="nav-left">
+    <img src="https://cdn.discordapp.com/attachments/1388573131962318899/1421533286521372754/a_7c2d5e3ae09ccaee29382ef6ded1fca7.gif?ex=6943824a&is=694230ca&hm=f748254b31d972eea1395b2e9da600c52bededa34ea0b198a6d22eed7e33eae1&" alt="Discord PFP">
+  </div>
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+  <div class="nav-center">
+    <a href="downloads/tool.zip" download>/tool</a>
+    <a href="downloads/config.json" download>/config</a>
+    <a href="downloads/readme.txt" download>/readme</a>
+  </div>
+</div>
 
-    const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    const fontSize = 16;
-    const columns = Math.floor(canvas.width / fontSize);
+<!-- BACKGROUND -->
+<canvas id="canvas"></canvas>
 
-    const drops = Array(columns).fill(1);
+<script>
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
 
-    function draw() {
-      ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener("resize", resize);
 
-      ctx.fillStyle = "#b026ff";
-      ctx.font = fontSize + "px monospace";
+const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+const fontSize = 16;
+let columns = Math.floor(canvas.width / fontSize);
+let drops = Array(columns).fill(1);
 
-      for (let i = 0; i < drops.length; i++) {
-        const text = letters[Math.floor(Math.random() * letters.length)];
-        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+function draw() {
+  ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-          drops[i] = 0;
-        }
+  ctx.fillStyle = "#b026ff";
+  ctx.font = fontSize + "px monospace";
 
-        drops[i]++;
-      }
+  for (let i = 0; i < drops.length; i++) {
+    const text = chars[Math.floor(Math.random() * chars.length)];
+    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+      drops[i] = 0;
     }
+    drops[i]++;
+  }
+}
 
-    setInterval(draw, 33);
+setInterval(draw, 33);
+</script>
 
-    window.addEventListener("resize", () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    });
-  </script>
 </body>
 </html>
