@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Falling Code Site</title>
+<title>iausyh Society</title>
 
 <style>
 html, body {
@@ -27,7 +27,10 @@ html, body {
   z-index: 10;
 }
 
+/* LEFT SECTION */
 .nav-left {
+  display: flex;
+  align-items: center;
   margin-left: 20px;
 }
 
@@ -37,7 +40,19 @@ html, body {
   border-radius: 50%;
 }
 
-/* CENTER LINKS */
+/* DISCORD LINK */
+.discord-link {
+  margin-left: 12px;
+  color: #b026ff;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.discord-link:hover {
+  text-decoration: underline;
+}
+
+/* CENTER LINK */
 .nav-center {
   flex: 1;
   text-align: center;
@@ -46,8 +61,7 @@ html, body {
 .nav-center a {
   color: #b026ff;
   text-decoration: none;
-  margin: 0 20px;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .nav-center a:hover {
@@ -70,12 +84,18 @@ canvas {
 <div class="navbar">
   <div class="nav-left">
     <img src="https://cdn.discordapp.com/attachments/1388573131962318899/1421533286521372754/a_7c2d5e3ae09ccaee29382ef6ded1fca7.gif?ex=6943824a&is=694230ca&hm=f748254b31d972eea1395b2e9da600c52bededa34ea0b198a6d22eed7e33eae1&" alt="Discord PFP">
+    <a
+      class="discord-link"
+      href="https://discord.gg/Sue9kKV29C"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Discord
+    </a>
   </div>
 
   <div class="nav-center">
-    <a href="downloads/tool.zip" download>/tool</a>
-    <a href="downloads/config.json" download>/config</a>
-    <a href="downloads/readme.txt" download>/readme</a>
+    <a href="downloads/ChilliWareV2.exe" download>/ChilliWareV2</a>
   </div>
 </div>
 
